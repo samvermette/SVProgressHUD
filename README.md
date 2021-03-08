@@ -10,7 +10,7 @@
 
 ![SVProgressHUD](http://f.cl.ly/items/2G1F1Z0M0k0h2U3V1p39/SVProgressHUD.gif)
 
-## Demo		
+## Demo
 
 Try `SVProgressHUD` on [Appetize.io](https://appetize.io/app/p8r2cvy8kq74x7q7tjqf5gyatr).
 
@@ -37,6 +37,8 @@ Second, install `SVProgressHUD` into your project:
 ```ruby
 pod install
 ```
+
+If you prefer a version of the library that's safe for use in extensions, you should use `SVProgressHUD/AppExtension`.
 
 ### Carthage
 
@@ -200,6 +202,12 @@ Each notification passes a `userInfo` dictionary holding the HUD's status string
 ## App Extensions
 
 When using `SVProgressHUD` in an App Extension, `#define SV_APP_EXTENSIONS` to avoid using unavailable APIs. Additionally call `setViewForExtension:` from your extensions view controller with `self.view`.
+
+## Multiple HUDs
+
+To enable usage of multiple HUDs (for example, to support multiple window scenes), you should cannot use the class functions.
+If you enable the extension safe mode of SVProgressHUD you can use the `-initWithView:` initializer to attach to a parent view.
+It will automatically be added and removed from that view as it is shown and dismissed.
 
 ## Contributing to this project
 

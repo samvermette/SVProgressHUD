@@ -148,5 +148,29 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 
 + (NSTimeInterval)displayDurationForString:(nullable NSString*)string;
 
+#pragma mark - Instance Functions
+
+- (nonnull instancetype)initWithView:(nonnull UIView*)view; // Create a HUD and set assign the parent view
+
+- (NSTimeInterval)displayDurationForString:(nullable NSString*)string;
+
+// shows a image + status, use white PNGs with the imageViewSize (default is 28x28 pt)
+- (void)showImage:(nonnull UIImage*)image status:(nullable NSString*)status;
+
+- (void)showProgress:(float)progress;
+- (void)showProgress:(float)progress status:(nullable NSString*)status;
+
+- (void)showWithStatus:(nullable NSString*)status;
+
+- (void)show;
+- (void)dismiss;
+
+- (BOOL)isVisible;
+
+// stops the activity indicator, shows a glyph + status, and dismisses the HUD a little bit later
+- (void)showInfoWithStatus:(nullable NSString*)status;
+- (void)showSuccessWithStatus:(nullable NSString*)status;
+- (void)showErrorWithStatus:(nullable NSString*)status;
+
 @end
 
