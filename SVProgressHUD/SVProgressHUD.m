@@ -264,7 +264,13 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [self showImage:[self sharedView].infoImage status:status];
     
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+  // Testing availability of @available (https://stackoverflow.com/a/46927445/1033581)
+#if __clang_major__ < 9
+  // Xcode 8-
+  if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_9_2) {
+#else
     if (@available(iOS 10.0, *)) {
+#endif
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self sharedView].hapticGenerator notificationOccurred:UINotificationFeedbackTypeWarning];
         });
@@ -283,7 +289,12 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [self showImage:[self sharedView].successImage status:status];
 
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
-    if (@available(iOS 10, *)) {
+#if __clang_major__ < 9
+  // Xcode 8-
+  if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_9_2) {
+#else
+    if (@available(iOS 10.0, *)) {
+#endif
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self sharedView].hapticGenerator notificationOccurred:UINotificationFeedbackTypeSuccess];
         });
@@ -298,7 +309,12 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [self setDefaultMaskType:existingMaskType];
     
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+#if __clang_major__ < 9
+  // Xcode 8-
+  if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_9_2) {
+#else
     if (@available(iOS 10.0, *)) {
+#endif
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self sharedView].hapticGenerator notificationOccurred:UINotificationFeedbackTypeSuccess];
         });
@@ -310,7 +326,12 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [self showImage:[self sharedView].errorImage status:status];
     
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+#if __clang_major__ < 9
+  // Xcode 8-
+  if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_9_2) {
+#else
     if (@available(iOS 10.0, *)) {
+#endif
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self sharedView].hapticGenerator notificationOccurred:UINotificationFeedbackTypeError];
         });
@@ -325,7 +346,12 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [self setDefaultMaskType:existingMaskType];
     
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+#if __clang_major__ < 9
+  // Xcode 8-
+  if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_9_2) {
+#else
     if (@available(iOS 10.0, *)) {
+#endif
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self sharedView].hapticGenerator notificationOccurred:UINotificationFeedbackTypeError];
         });
@@ -832,7 +858,12 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
             
             // Tell the Haptics Generator to prepare for feedback, which may come soon
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+#if __clang_major__ < 9
+          // Xcode 8-
+          if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_9_2) {
+#else
             if (@available(iOS 10.0, *)) {
+#endif
                 [strongSelf.hapticGenerator prepare];
             }
 #endif
